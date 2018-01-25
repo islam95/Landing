@@ -20,8 +20,8 @@ class IndexController extends Controller
         $services = Service::all();
         $team = Team::take(3)->get(); // берет три сотрудника
 
-        dd($team);
 
-        return view('layouts.main');
+
+        return view('front.index');
     }
 }
