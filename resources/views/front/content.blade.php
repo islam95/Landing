@@ -1,7 +1,8 @@
 {{-- Home and About Us --}}
 @if (isset($pages) && is_object($pages))
-    @foreach ($pages as $key => $page)
-        @if ($key % 2 == 0) {{-- even sections --}}
+    @foreach ($pages as $index => $page)
+        @if ($index % 2 == 0) {{-- even sections --}}
+
             <section id="home" class="top_cont_outer">
                 <div class="hero_wrapper">
                     <div class="container">
@@ -22,7 +23,9 @@
                     </div>
                 </div>
             </section>
+
             @else {{-- odd sections --}}
+
             <section id="aboutUs">
                 <div class="inner_wrapper">
                     <div class="container">
@@ -56,11 +59,13 @@
     <div class="container">
         <h2>Services</h2>
         <div class="service_wrapper">
-            @foreach($services as $key=>$service)
-                @if($key == 0 || $key % 3 == 0)
-                    <div class="row {{ ($key != 0) ? 'borderTop' : '' }}">
+
+            @foreach($services as $index => $service)
+
+                @if($index == 0 || $index % 3 == 0)
+                    <div class="row {{ ($index != 0) ? 'borderTop' : '' }}">
                 @endif
-                        <div class="col-lg-4 {{ ($key % 3 > 0) ? 'borderLeft' : '' }} {{ ($key > 2) ? 'mrgTop' : '' }}">
+                        <div class="col-lg-4 {{ ($index % 3 > 0) ? 'borderLeft' : '' }} {{ ($index > 2) ? 'mrgTop' : '' }}">
                             <div class="service_block">
                                 <div class="service_icon delay-03s animated wow zoomIn">
                                     <span><i class="fa {{ $service->icon }}"></i></span>
@@ -69,10 +74,12 @@
                                 <p class="animated fadeInDown wow">{{ $service->content }}</p>
                             </div>
                         </div>
-                @if(($key + 1) % 3 == 0)
+                @if(($index + 1) % 3 == 0)
                     </div>
                 @endif
+
             @endforeach
+
         </div>
     </div>
 </section>
@@ -89,19 +96,24 @@
     <div class="portfolio-top"></div>
     <!-- Portfolio Filters -->
     <div class="portfolio">
+
         @if (isset($tags))
         <div id="filters" class="sixteen columns">
             <ul class="clearfix">
                 {{-- Leaving this out from foreach loop in order to reset all filters --}}
                 <li><a id="all" href="#" data-filter="*" class="active"><h5>All</h5></a></li>
+
             @foreach($tags as $tag)
                 <li><a class="" href="#" data-filter=".{{ $tag }}"><h5>{{ $tag }}</h5></a></li>
             @endforeach
+
             </ul>
         </div>
         @endif
+
         <!-- Portfolio Wrapper -->
         <div class="isotope fadeInLeft animated wow" style="position: relative; overflow: hidden; height: 480px;" id="portfolio_wrapper">
+
         @foreach ($portfolio as $portfolio_item)
             <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four {{ $portfolio_item->filter }} isotope-item">
                 <div class="portfolio_img">
@@ -145,59 +157,37 @@
 </section>
 
 {{-- Team --}}
+@if(isset($team) && is_object($team))
 <section class="page_section team" id="team">
     <div class="container">
         <h2>Team</h2>
         <h6>Lorem ipsum dolor sit amet, consectetur adipiscing.</h6>
         <div class="team_section clearfix">
-            <div class="team_area">
-                <div class="team_box wow fadeInDown delay-03s">
-                    <div class="team_box_shadow"><a href="javascript:void(0)"></a></div>
-                    <img src="{{ asset('assets/img/team_pic1.jpg') }}" alt="">
-                    <ul>
-                        <li><a href="javascript:void(0)" class="fa fa-twitter"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-facebook"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-pinterest"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-google-plus"></a></li>
-                    </ul>
+
+            @foreach($team as $index => $team_member)
+
+                <div class="team_area">
+                    <div class="team_box wow fadeInDown delay-0{{ ($index % 3) + 3 }}s"> {{-- delay will be 03s, 06s, 09s and so on --}}
+                        <div class="team_box_shadow"><a href="javascript:void(0)"></a></div>
+                        {!! Html::image('assets/img/'.$team_member->images, $team_member->name) !!}
+                        <ul>
+                            <li><a href="javascript:void(0)" class="fa fa-twitter"></a></li>
+                            <li><a href="javascript:void(0)" class="fa fa-facebook"></a></li>
+                            <li><a href="javascript:void(0)" class="fa fa-pinterest"></a></li>
+                            <li><a href="javascript:void(0)" class="fa fa-google-plus"></a></li>
+                        </ul>
+                    </div>
+                    <h3 class="wow fadeInDown delay-0{{ ($index % 3) + 3 }}s">{{ $team_member->name }}</h3>
+                    <span class="wow fadeInDown delay-0{{ ($index % 3) + 3 }}s">{{ $team_member->position }}</span>
+                    <p class="wow fadeInDown delay-0{{ ($index % 3) + 3 }}s">{{ $team_member->content }}</p>
                 </div>
-                <h3 class="wow fadeInDown delay-03s">Tom Rensed</h3>
-                <span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-                <p class="wow fadeInDown delay-03s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-            </div>
-            <div class="team_area">
-                <div class="team_box  wow fadeInDown delay-06s">
-                    <div class="team_box_shadow"><a href="javascript:void(0)"></a></div>
-                    <img src="{{ asset('assets/img/team_pic2.jpg') }}" alt="">
-                    <ul>
-                        <li><a href="javascript:void(0)" class="fa fa-twitter"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-facebook"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-pinterest"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-06s">Kathren Mory</h3>
-                <span class="wow fadeInDown delay-06s">Vice President</span>
-                <p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-            </div>
-            <div class="team_area">
-                <div class="team_box wow fadeInDown delay-09s">
-                    <div class="team_box_shadow"><a href="javascript:void(0)"></a></div>
-                    <img src="{{ asset('assets/img/team_pic3.jpg') }}" alt="">
-                    <ul>
-                        <li><a href="javascript:void(0)" class="fa fa-twitter"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-facebook"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-pinterest"></a></li>
-                        <li><a href="javascript:void(0)" class="fa fa-google-plus"></a></li>
-                    </ul>
-                </div>
-                <h3 class="wow fadeInDown delay-09s">Lancer Jack</h3>
-                <span class="wow fadeInDown delay-09s">Senior Manager</span>
-                <p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-            </div>
+
+            @endforeach
+
         </div>
     </div>
 </section>
+@endif
 
 {{-- Contact footer --}}
 <footer class="footer_wrapper" id="contact">
