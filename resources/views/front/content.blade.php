@@ -1,7 +1,7 @@
+{{-- Home and About Us --}}
 @if (isset($pages) && is_object($pages))
     @foreach ($pages as $key => $page)
         @if ($key % 2 == 0) {{-- even sections --}}
-
             <section id="home" class="top_cont_outer">
                 <div class="hero_wrapper">
                     <div class="container">
@@ -15,16 +15,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-7 col-sm-5">
-                                    {!! Html::image('assets/img/'.$page->images, '', array('class'=>'zoomIn wow animated', 'alt'=>'')) !!}
+                                    {!! Html::image('assets/img/'.$page->images, $page->name, array('class'=>'zoomIn wow animated')) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
-
             @else {{-- odd sections --}}
-
             <section id="aboutUs">
                 <div class="inner_wrapper">
                     <div class="container">
@@ -32,7 +30,7 @@
                         <div class="inner_section">
                             <div class="row">
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
-                                    {!! Html::image('assets/img/'.$page->images, '', array('class'=>'img-circle delay-03s animated wow zoomIn', 'alt'=>'')) !!}
+                                    {!! Html::image('assets/img/'.$page->images, $page->name, array('class'=>'img-circle delay-03s animated wow zoomIn')) !!}
                                 </div>
                                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12 pull-left">
                                     <div class="delay-01s animated fadeInDown wow animated">
@@ -52,38 +50,36 @@
     @endforeach
 @endif
 
+{{-- Services --}}
 @if(isset($services) && is_object($services))
 <section id="service">
     <div class="container">
         <h2>Services</h2>
         <div class="service_wrapper">
-
-    @foreach($services as $key=>$service)
-        @if($key == 0 || $key % 3 == 0)
-            <div class="row {{ ($key != 0) ? 'borderTop' : '' }}">
-        @endif
-                <div class="col-lg-4 {{ ($key % 3 > 0) ? 'borderLeft' : '' }}">
-                    <div class="service_block">
-                        <div class="service_icon delay-03s animated wow zoomIn">
-                            <span><i class="fa {{ $service->icon }}"></i></span>
+            @foreach($services as $key=>$service)
+                @if($key == 0 || $key % 3 == 0)
+                    <div class="row {{ ($key != 0) ? 'borderTop' : '' }}">
+                @endif
+                        <div class="col-lg-4 {{ ($key % 3 > 0) ? 'borderLeft' : '' }} {{ ($key > 2) ? 'mrgTop' : '' }}">
+                            <div class="service_block">
+                                <div class="service_icon delay-03s animated wow zoomIn">
+                                    <span><i class="fa {{ $service->icon }}"></i></span>
+                                </div>
+                                <h3 class="animated fadeInUp wow">{{ $service->name }}</h3>
+                                <p class="animated fadeInDown wow">{{ $service->content }}</p>
+                            </div>
                         </div>
-                        <h3 class="animated fadeInUp wow">{{ $service->name }}</h3>
-                        <p class="animated fadeInDown wow">{{ $service->content }}</p>
+                @if(($key + 1) % 3 == 0)
                     </div>
-                </div>
-        @if(($key + 1) % 3 == 0)
-            </div>
-        @endif
-    @endforeach
-
+                @endif
+            @endforeach
         </div>
     </div>
 </section>
-<!--Service-->
-
 @endif
 
-<!-- Portfolio -->
+{{-- Portfolio --}}
+@if(isset($portfolio) && is_object($portfolio))
 <section id="Portfolio" class="content">
     <div class="container portfolio_title">
         <div class="section-title">
@@ -93,94 +89,32 @@
     <div class="portfolio-top"></div>
     <!-- Portfolio Filters -->
     <div class="portfolio">
+        @if (isset($tags))
         <div id="filters" class="sixteen columns">
             <ul class="clearfix">
-                <li><a id="all" href="#" data-filter="*" class="active">
-                        <h5>All</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".prototype">
-                        <h5>Prototype</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".design">
-                        <h5>Design</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".android">
-                        <h5>Android</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".appleIOS">
-                        <h5>Apple iOS</h5>
-                    </a></li>
-                <li><a class="" href="#" data-filter=".web">
-                        <h5>Web App</h5>
-                    </a></li>
+                {{-- Leaving this out from foreach loop in order to reset all filters --}}
+                <li><a id="all" href="#" data-filter="*" class="active"><h5>All</h5></a></li>
+            @foreach($tags as $tag)
+                <li><a class="" href="#" data-filter=".{{ $tag }}"><h5>{{ $tag }}</h5></a></li>
+            @endforeach
             </ul>
         </div>
+        @endif
         <!-- Portfolio Wrapper -->
         <div class="isotope fadeInLeft animated wow" style="position: relative; overflow: hidden; height: 480px;" id="portfolio_wrapper">
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four appleIOS isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic1.jpg') }}"  alt="Portfolio 1"> </div>
+        @foreach ($portfolio as $portfolio_item)
+            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four {{ $portfolio_item->filter }} isotope-item">
+                <div class="portfolio_img">
+                    {!! Html::image('assets/img/'.$portfolio_item->images, $portfolio_item->name) !!}
+                </div>
                 <div class="item_overlay">
                     <div class="item_info">
-                        <h4 class="project_name">SMS Mobile App</h4>
+                        <h4 class="project_name">{{ $portfolio_item->name }}</h4>
                     </div>
                 </div>
             </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four design isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic2.jpg') }}" alt="Portfolio 2"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Finance App</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four design isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic3.jpg') }}" alt="Portfolio 3"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">GPS Concept</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 0px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four android prototype web isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic4.jpg') }}" alt="Portfolio 4"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Shopping</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(0px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four design isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic5.jpg') }}" alt="Portfolio 5"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Managment</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(337px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four web isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic6.jpg') }}" alt="Portfolio 6"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">iPhone</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(674px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four design web isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic7.jpg') }}" alt="Portfolio 7"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Nexus Phone</h4>
-                    </div>
-                </div>
-            </div>
-            <div style="position: absolute; left: 0px; top: 0px; transform: translate3d(1011px, 240px, 0px) scale3d(1, 1, 1); width: 337px; opacity: 1;" class="portfolio-item one-four android isotope-item">
-                <div class="portfolio_img"> <img src="{{ asset('assets/img/portfolio_pic8.jpg') }}" alt="Portfolio 8"> </div>
-                <div class="item_overlay">
-                    <div class="item_info">
-                        <h4 class="project_name">Android</h4>
-                    </div>
-                </div>
-            </div>
+        @endforeach
+
         </div>
         <!--/Portfolio Wrapper -->
     </div>
@@ -193,8 +127,9 @@
         <div id="project_data"></div>
     </div>
 </section>
-<!--/Portfolio -->
+@endif
 
+{{-- Clients --}}
 <section class="page_section" id="clients">
     <h2>Clients</h2>
     <div class="client_logos">
@@ -209,6 +144,7 @@
     </div>
 </section>
 
+{{-- Team --}}
 <section class="page_section team" id="team">
     <div class="container">
         <h2>Team</h2>
@@ -263,7 +199,7 @@
     </div>
 </section>
 
-<!--Footer-->
+{{-- Contact footer --}}
 <footer class="footer_wrapper" id="contact">
     <div class="container">
         <section class="page_section contact" id="contact">
@@ -317,6 +253,6 @@
         </section>
     </div>
     <div class="container">
-        <div class="footer_bottom"><span>Copyright &copy; 2018, Built with Laravel by <a href="http://islamdudaev.ru" target="_blank">IslamDudaev.ru</a>. </span></div>
+        <div class="footer_bottom"><span>Copyright &copy; 2018, Built with Laravel by <a href="http://islamdudaev.ru" target="_blank">Islam Dudaev</a>. </span></div>
     </div>
 </footer>

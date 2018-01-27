@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Page;
+
+use App\Team;
 use App\Service;
 use App\Portfolio;
-use App\Team;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class IndexController extends Controller
@@ -19,6 +20,8 @@ class IndexController extends Controller
         $portfolio = Portfolio::get(array('name', 'filter', 'images')); // можно выбрать что нам нужно
         $services = Service::all();
         $team = Team::take(3)->get(); // берет три сотрудника
+
+        $tags = DB::table('portfolio')->distinct()->orderBy('filter', 'desc')->lists('filter');
 
         $menu = array();
 
@@ -50,6 +53,7 @@ class IndexController extends Controller
             'team'      => $team,
             'services'  => $services,
             'portfolio' => $portfolio,
+            'tags'      => $tags,
         ));
 
     }
