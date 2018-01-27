@@ -22,7 +22,7 @@
 
 <!--Header_section-->
 <header id="header_wrapper">
-    @yield('header')
+@yield('header')
 </header>
 <!--Header_section-->
 
