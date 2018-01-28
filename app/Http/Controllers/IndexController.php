@@ -10,6 +10,7 @@ use App\Portfolio;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class IndexController extends Controller
@@ -33,7 +34,17 @@ class IndexController extends Controller
             // Store input data in the variable
             $data = $request->all();
 
-            // mail
+            // Sending mail
+            $mail = Mail::send('emails.contact', ['data'=>$data], function($message) use ($data) {
+                $mail_admin = env('MAIL_ADMIN');
+                $message->from($data['email'], $data['name']);
+                $message->to($mail_admin)->subject('Message from contact form of the website');
+            });
+
+            if ($mail){
+                // redirecting to home page with a message stored in a session
+                return redirect()->route('home')->with('status', 'Email is sent');
+            }
 
         }
 
