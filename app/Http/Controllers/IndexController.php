@@ -16,6 +16,27 @@ class IndexController extends Controller
 {
     public function execute(Request $request)
     {
+        // Checking if POST is used, meaning contact send form
+        if ($request->isMethod('post')){
+
+            $validation_messages = [
+                'required' => "Please, fill in the field :attribute.",
+                'email' => "Please, enter a valid email address in :attribute.",
+            ];
+            // Validate contact form
+            $this->validate($request, [
+                'name'      => 'required|max:255',
+                'email'     => 'required|email',
+                'message'   => 'required'
+             ], $validation_messages);
+
+            // Store input data in the variable
+            $data = $request->all();
+
+            // mail
+
+        }
+
         $pages = Page::all();
         $portfolio = Portfolio::get(array('name', 'filter', 'images')); // можно выбрать что нам нужно
         $services = Service::all();

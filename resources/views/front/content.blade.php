@@ -224,7 +224,7 @@
                         </div>
                     </div>
 
-                    <ul class="social_links">
+                    <ul class="social">
                         <li class="twitter animated bounceIn wow delay-02s"><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
                         <li class="facebook animated bounceIn wow delay-03s"><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
                         <li class="pinterest animated bounceIn wow delay-04s"><a href="javascript:void(0)"><i class="fa fa-pinterest"></i></a></li>
@@ -233,16 +233,19 @@
                 </div>
                 <div class="col-lg-8 wow fadeInLeft delay-06s">
                     <div class="form">
-                        <input class="input-text" type="text" name="" value="Your Name *" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">
-                        <input class="input-text" type="text" name="" value="Your E-mail *" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">
-                        <textarea class="input-text text-area" cols="0" rows="0" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
-                        <input class="input-btn" type="submit" value="send message">
+                        <form action="{{ route('home') }}" method="post">
+                            <input class="input-text" type="text" name="name" value="Your Name *" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">
+                            <input class="input-text" type="email" name="email" value="Your E-mail *" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">
+                            <textarea class="input-text text-area" name="message" cols="0" rows="0" onFocus="if(this.value==this.defaultValue)this.value='';" onBlur="if(this.value=='')this.value=this.defaultValue;">Your Message *</textarea>
+                            <input class="input-btn" type="submit" value="send message">
+                            {{ csrf_field() }}
+                        </form>
                     </div>
                 </div>
             </div>
         </section>
     </div>
     <div class="container">
-        <div class="footer_bottom"><span>Copyright &copy; 2018, Built with Laravel by <a href="http://islamdudaev.ru" target="_blank">Islam Dudaev</a>. </span></div>
+        <div class="footer_bottom"><span>Copyright &copy; 2018. Built by <a href="http://islamdudaev.ru" target="_blank">Islam Dudaev</a></span></div>
     </div>
 </footer>

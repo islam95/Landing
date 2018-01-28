@@ -6,8 +6,8 @@ Do not remove the back-link in this web template
 -------------------------------------------------------*/
 
 @charset "utf-8";
-@import url(http://fonts.googleapis.com/css?family=Raleway:800,700,400);
-@import url(http://fonts.googleapis.com/css?family=Signika:400,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway:800,700,400);
+@import url(https://fonts.googleapis.com/css?family=Signika:400,600);
 
 /* Reset
 ---------------------------------*/
@@ -183,7 +183,9 @@ p {
     background-color: transparent;
 }
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
     color: #df0031;
     background-color: transparent;
 }
@@ -401,7 +403,6 @@ a.read_more2:hover {
 }
 
 .service-list-col1 i {
-    display:;
     color: #888;
     font-size: 19px;
     font-style: normal;
@@ -872,7 +873,7 @@ img {
     margin: 0 0 30px;
 }
 
-.social_links {
+.social {
     padding:0;
     margin: 0;
     display: block;
@@ -880,12 +881,12 @@ img {
     list-style: none;
 }
 
-.social_links li {
+.social li {
     float: left;
     margin-right: 4px;
 }
 
-.social_links li a {
+.social li a {
     display: block;
     width: 50px;
     height: 50px;
@@ -895,7 +896,7 @@ img {
     color: #fff;
 }
 
-.social_links li a:hover, .social_links li a:focus {
+.social li a:hover, .social li a:focus {
     text-decoration: none;
     border-radius: 80px;
 }
@@ -1264,6 +1265,7 @@ img {
     transition: opacity .1s .2s;
 }
 
+/*
 .zoom-icon {
     left: 50%;
     margin-left: -20px;
@@ -1290,7 +1292,7 @@ img {
     -o-transition: opacity .3s .2s, margin-top .3s .2s;
     transition: opacity .3s .2s, margin-top .3s .2s;
 }
-	
+*/
 	
 	
 	
@@ -1338,7 +1340,7 @@ img {
     display: none;
     background-color: #FFF;
 }
-
+/*
 #project-page-button-fullscreen {
     height: auto;
     z-index: 100;
@@ -1379,6 +1381,7 @@ img {
     margin: 60px 10px 0px 10px;
     font-size: 30px;
 }
+*/
 
 #project_data {
     margin-bottom: 0px;
@@ -1406,7 +1409,7 @@ img {
 	
 /* Portfolio*/	
 	
-	
+/*
 .project-image-slider .bx-wrapper .bx-next {
     background: url("images/project_slider_right.png") no-repeat;
     background-size: 35px 65px;
@@ -1436,7 +1439,8 @@ img {
     width: 35px;
     z-index: 100;
 }
-	
+*/
+
 /* Portfolio Normal Expander */		
 	
 .project-description {
@@ -1525,6 +1529,7 @@ div.mc-image {
     width: 100%;
 }
 
+/*
 .in-slide-content div.info-slide {
     background: #FFF url(images/info.png) no-repeat left bottom;
     background-size: 46px 46px;
@@ -1584,6 +1589,7 @@ div.mc-image {
     position: relative;
     white-space: nowrap;
 }
+*/
 
 .info-slide p {
     color: #aaa;
@@ -1662,7 +1668,7 @@ margin: 0 18px;
 .page_section.team{
 padding: 40px 0;
 }
-, #clients {
+#clients {
 padding: 40px 0;
 }
 .client_logos ul li {
@@ -1671,7 +1677,7 @@ margin: 0 25px;
 padding: 11px 0;
 display: inline-block;
 }
-.social_links li {
+.social li {
 float: left; 
 }
 .contact_section{
