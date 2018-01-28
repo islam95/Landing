@@ -22,7 +22,7 @@ class IndexController extends Controller
 
             $validation_messages = [
                 'required' => "Please, fill in the field :attribute.",
-                'email' => "Please, enter a valid email address in :attribute.",
+                'email' => "Please, enter a valid email address in :attribute field.",
             ];
             // Validate contact form
             $this->validate($request, [
