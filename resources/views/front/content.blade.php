@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="work_bottom">
                                         <span>Want to know more..</span>
-                                        <a href="{{ route('page', array('alias'=>$page->alias)) }}" class="contact_btn">Contact Us</a>
+                                        <a href="{{ route('page', array('alias'=>$page->alias)) }}" class="contact_btn">Read More</a>
                                     </div>
                                 </div>
                             </div>
