@@ -22,7 +22,10 @@ Route::group([], function () {
 Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
     // admin
     Route::get('/', function (){
-        //
+        if (view()->exists('admin.index')){
+            $data = ['title'=>'Admin Panel'];
+            return view('admin.index', $data);
+        }
     });
 
     // admin/pages
@@ -56,6 +59,7 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
     });
 
 });
+
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
