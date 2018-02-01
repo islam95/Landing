@@ -31,8 +31,13 @@
     </header>
     @yield('content')
 
+
+    <script>
+        ClassicEditor.create(document.querySelector('#editor'));
+    </script>
+
     <script type="text/javascript" src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/ckeditor5/ckeditor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
 </body>
