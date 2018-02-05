@@ -7,6 +7,11 @@
     <link rel="icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/js/ckeditor/ckeditor.js')}}"></script>
 </head>
 <body>
 
@@ -31,14 +36,9 @@
     </header>
     @yield('content')
 
-
     <script>
         ClassicEditor.create(document.querySelector('#editor'));
     </script>
 
-    <script type="text/javascript" src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/ckeditor/ckeditor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/bootstrap-filestyle.min.js')}}"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@
     <div class="form-group">
         {!! Form::label('images', 'Image:',['class'=>'col-xs-2 control-label']) !!}
         <div class="col-xs-8">
-            {!! Form::file('images', ['class' => 'filestyle','data-buttonText'=>'Enter image','data-buttonName'=>"btn-primary",'data-placeholder'=>"No file"]) !!}
+            {!! Form::file('images', ['class' => 'filestyle','data-buttonText'=>'Choose file','data-buttonName'=>"btn-primary",'data-placeholder'=>"No file"]) !!}
         </div>
     </div>
 
@@ -39,6 +39,7 @@
     {!! Form::close() !!}
 
     <script>
+        // Replace the <textarea id="editor"> with a CKEditor instance, using default configuration.
         CKEDITOR.replace('editor');
     </script>
 
