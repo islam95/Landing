@@ -35,27 +35,27 @@ Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function () {
         // admin/pages/add
         Route::match(['get', 'post'], '/add', ['uses'=>'Admin\AddPagesController@execute', 'as'=>'addPages']);
         // admin/pages/edit/1
-        Route::match(['get', 'post', 'delete'], '/edit/{page}', ['uses'=>'EditPagesController@execute', 'as'=>'editPages']);
+        Route::match(['get', 'post', 'delete'], '/edit/{page}', ['uses'=>'Admin\EditPagesController@execute', 'as'=>'editPages']);
     });
 
     // admin/portfolio
     Route::group(['prefix'=>'portfolio'], function (){
         // admin/portfolio
-        Route::get('/', ['uses'=>'PortfolioController@execute', 'as'=>'portfolio']);
+        Route::get('/', ['uses'=>'Admin\PortfolioController@execute', 'as'=>'portfolio']);
         // admin/portfolio/add
-        Route::match(['get', 'post'], '/add', ['uses'=>'AddPortfolioController@execute', 'as'=>'addPortfolio']);
+        Route::match(['get', 'post'], '/add', ['uses'=>'Admin\AddPortfolioController@execute', 'as'=>'addPortfolio']);
         // admin/portfolio/edit/1
-        Route::match(['get', 'post', 'delete'], '/edit/{portfolio}', ['uses'=>'EditPortfolioController@execute', 'as'=>'editPortfolio']);
+        Route::match(['get', 'post', 'delete'], '/edit/{portfolio}', ['uses'=>'Admin\EditPortfolioController@execute', 'as'=>'editPortfolio']);
     });
 
     // admin/services
     Route::group(['prefix'=>'services'], function (){
         // admin/services
-        Route::get('/', ['uses'=>'ServiceController@execute', 'as'=>'services']);
+        Route::get('/', ['uses'=>'Admin\ServiceController@execute', 'as'=>'services']);
         // admin/services/add
-        Route::match(['get', 'post'], '/add', ['uses'=>'AddServiceController@execute', 'as'=>'addService']);
+        Route::match(['get', 'post'], '/add', ['uses'=>'Admin\AddServiceController@execute', 'as'=>'addService']);
         // admin/services/edit/1
-        Route::match(['get', 'post', 'delete'], '/edit/{service}', ['uses'=>'EditServiceController@execute', 'as'=>'editService']);
+        Route::match(['get', 'post', 'delete'], '/edit/{service}', ['uses'=>'Admin\EditServiceController@execute', 'as'=>'editService']);
     });
 
 });
