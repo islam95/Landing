@@ -13,6 +13,12 @@ class EditPagesController extends Controller
 {
     public function execute(Page $page, Request $request)
     {
+        if ($request->isMethod('delete')){
+            $page->delete();
+            return redirect('admin/pages')->with('status', 'Page was successfully deleted!');
+        }
+
+
         if ($request->isMethod('post')){
 
             $input = $request->except('_token');
@@ -58,5 +64,6 @@ class EditPagesController extends Controller
 
             return view('admin.pages_edit', $data);
         }
+
     }
 }
